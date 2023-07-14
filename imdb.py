@@ -10,6 +10,7 @@ import scrapy
 from scrapy.item import Item, Field
 
 from scrapy.loader import ItemLoader
+
 generes = {
     "Action": 1766,
     "Advanture" : 1269,
@@ -38,7 +39,7 @@ generes = {
 
 class Movie(Item):
     name = Field()
-    administration = Field()
+    certificate = Field()
     runtime = Field()
     genre = Field()
     rate = Field()
@@ -60,4 +61,6 @@ class IMDb_Movies(scrapy.Spider):
             yield scrapy.Request(url = url, callback=self.parse)
         
     def parse(self,response):
-        pass
+        loader = ItemLoader(item=Movie(),response=response)
+        loader.add_xpath("name","//div[@class='lister-list']/div[@class='lister-item mode-advanced']/div[@class='lister-item-content']/h3[@class='lister-item-header']/a")
+        
