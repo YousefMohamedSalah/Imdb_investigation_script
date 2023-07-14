@@ -39,6 +39,7 @@ generes = {
 
 class Movie(Item):
     name = Field()
+    year = Field()
     certificate = Field()
     runtime = Field()
     genre = Field()
@@ -63,4 +64,3 @@ class IMDb_Movies(scrapy.Spider):
     def parse(self,response):
         loader = ItemLoader(item=Movie(),response=response)
         loader.add_xpath("name","//div[@class='lister-list']/div[@class='lister-item mode-advanced']/div[@class='lister-item-content']/h3[@class='lister-item-header']/a")
-        
