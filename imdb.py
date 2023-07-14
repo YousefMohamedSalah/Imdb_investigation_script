@@ -11,6 +11,7 @@ from scrapy.item import Item, Field
 
 from scrapy.loader import ItemLoader
 
+generes = {}
 
 class IMDb_Movies(scrapy.Spider):
     name = "imdb_movies"
